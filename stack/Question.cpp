@@ -76,6 +76,37 @@ bool validPrantheses(string s){
         return false;
     }
 }
+
+//functino to insert the element in the bottom of the stack using recursion
+void insertAtBottom(stack<int>&st,int element){
+    //base case
+    if(st.empty()){
+        st.push(element);
+        return;
+    }
+
+    int num = st.top();
+    st.pop();
+
+    insertAtBottom(st,element);
+
+    st.push(num);
+}
+//
+void reverseStack(stack<int>&st){
+    //base case
+    if(st.empty()){
+        return;
+    }
+
+    int num = st.top();
+    st.pop();
+
+    reverseStack(st);
+
+    insertAtBottom(st,num);
+
+}
 int main(){
     
 //reverse string using stack
@@ -95,12 +126,28 @@ int main(){
     // print(st);
 
 //valid prantheses
- string s = "{{([({)])}}";
- if(validPrantheses(s)){
-    cout<<"Balanced Prantheses "<<endl;
- }else{
-    cout<<"Not a Balanced Prantheses "<<endl;
- }
+    //  string s = "{{([({)])}}";
+    //  if(validPrantheses(s)){
+    //     cout<<"Balanced Prantheses "<<endl;
+    //  }else{
+    //     cout<<"Not a Balanced Prantheses "<<endl;
+    //  }
+
+//insert an element in the bottom of the stack
+    int element =12;
+    stack<int> st;
+    st.push(3);
+    st.push(9);
+    st.push(1);
+    st.push(5);
+    st.push(8);
+    print(st);
+    insertAtBottom(st,element);
+    print(st);
+
+//reverse the elements of stack 
+    reverseStack(st);
+    print(st);
 
 return 0;
 }
