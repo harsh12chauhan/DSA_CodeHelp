@@ -40,6 +40,42 @@ void deleteMiddle(stack<int>&st,int size,int count){
     st.push(num);
 }
 
+// function to check weather the string has valid prantheses
+bool validPrantheses(string s){
+    stack<char> st;
+    char c1 = '}',c2 =')',c3=']';
+    for(int i = 0;i<s.size();i++){
+        char ch = s[i];
+
+        //if opening bracket push in stack
+        if (ch == '{' || ch == '[' || ch == '(') {
+          st.push(ch);
+
+        // if closing bracket then check top and pop
+        } else{
+            if(!st.empty()){
+                char t = st.top();
+                if (t == '{' && ch == '}'){
+                    st.pop();
+                }else if (t == '(' && ch == ')'){
+                    st.pop();
+                }else if (t == '[' && ch == ']'){
+                    st.pop();
+                }else{
+                    return false;
+                }
+            }else{
+                return false;
+            }
+        }
+    }
+    if(st.empty()){
+        return true;
+    }
+    else{
+        return false;
+    }
+}
 int main(){
     
 //reverse string using stack
@@ -48,15 +84,23 @@ int main(){
     // cout<<s<<endl;
 
 // delete middle element in stack
-    stack<int> st;
-    st.push(3);
-    st.push(9);
-    st.push(1);
-    st.push(5);
-    st.push(8);
-    print(st);
-    deleteMiddle(st,st.size(),0);
-    print(st);
+    // stack<int> st;
+    // st.push(3);
+    // st.push(9);
+    // st.push(1);
+    // st.push(5);
+    // st.push(8);
+    // print(st);
+    // deleteMiddle(st,st.size(),0);
+    // print(st);
+
+//valid prantheses
+ string s = "{{([({)])}}";
+ if(validPrantheses(s)){
+    cout<<"Balanced Prantheses "<<endl;
+ }else{
+    cout<<"Not a Balanced Prantheses "<<endl;
+ }
 
 return 0;
 }
