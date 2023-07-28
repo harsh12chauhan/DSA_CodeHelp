@@ -92,7 +92,7 @@ void insertAtBottom(stack<int>&st,int element){
 
     st.push(num);
 }
-//
+// function to reverse a stack
 void reverseStack(stack<int>&st){
     //base case
     if(st.empty()){
@@ -107,6 +107,37 @@ void reverseStack(stack<int>&st){
     insertAtBottom(st,num);
 
 }
+//function to insert element in sorted way in stack
+void insertInSortedWay(stack<int> &st,int element){
+	//base case
+	if(st.empty() || (!st.empty() && st.top()<element)){
+		st.push(element);
+		return ;
+	}
+
+	int num = st.top();
+	st.pop();
+
+	insertInSortedWay(st,element);
+
+	st.push(num);
+}
+// function to sort stack using recursion
+void sortStack(stack<int> &stack)
+{
+	//base case
+	if(stack.empty()){
+		return ;
+	}
+
+	int num = stack.top();
+	stack.pop();
+
+	sortStack(stack);
+	
+	insertInSortedWay(stack,num);
+}
+
 int main(){
     
 //reverse string using stack
@@ -141,12 +172,16 @@ int main(){
     st.push(1);
     st.push(5);
     st.push(8);
-    print(st);
-    insertAtBottom(st,element);
-    print(st);
+    // print(st);
+    // insertAtBottom(st,element);
+    // print(st);
 
 //reverse the elements of stack 
-    reverseStack(st);
+    // reverseStack(st);
+    print(st);
+
+// sort the stack 
+    sortStack(st);    
     print(st);
 
 return 0;
