@@ -137,7 +137,33 @@ void sortStack(stack<int> &stack)
 	
 	insertInSortedWay(stack,num);
 }
-
+// check if the expression has redundant brckets
+bool findRedundantBrackets(string &s)
+{
+    stack<char> st;
+    for(int i = 0;i<s.length();i++){
+        char ch = s[i];
+        if(ch == '(' || ch == '+' || ch == '-'||ch =='*' ||ch =='/'){
+            st.push(ch);
+        }else{
+            bool isRedundant = true;
+            if(ch == ')'){
+                while(st.top() != '('){
+                    char top = st.top();
+                    if (top == '+' || top == '-' || top == '*' || top == '/') {
+                        isRedundant = false;
+                    }
+                    st.pop();
+                }
+                if (isRedundant) {
+                    return true;
+                }
+                st.pop();
+            }
+        }
+    }
+    return false;
+}
 int main(){
     
 //reverse string using stack
@@ -165,24 +191,32 @@ int main(){
     //  }
 
 //insert an element in the bottom of the stack
-    int element =12;
-    stack<int> st;
-    st.push(3);
-    st.push(9);
-    st.push(1);
-    st.push(5);
-    st.push(8);
+    // int element =12;
+    // stack<int> st;
+    // st.push(3);
+    // st.push(9);
+    // st.push(1);
+    // st.push(5);
+    // st.push(8);
     // print(st);
     // insertAtBottom(st,element);
     // print(st);
 
 //reverse the elements of stack 
     // reverseStack(st);
-    print(st);
+    // print(st);
 
 // sort the stack 
-    sortStack(st);    
-    print(st);
+    // sortStack(st);    
+    // print(st);
+
+// redundant brackets 
+    string s=  "((a+b(a/b)))";
+    if(findRedundantBrackets(s)){
+        cout<< "There are redundent brackets in the expression "<<endl;
+    }else{
+        cout<<"There are no redundant brackets in the expression"<<endl;
+    }
 
 return 0;
 }
