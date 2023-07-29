@@ -1,5 +1,6 @@
 #include <iostream>
 #include <stack>
+#include <vector>
 using namespace std;
 
 // reverse string using stack
@@ -197,6 +198,25 @@ int findMinimumCost(string str) {
   int ans = (a+1)/2 + (b+1)/2;
   return ans;
 }
+//
+vector<int> nextSmallElement(vector<int> arr,int n){
+    stack<int> s;
+    s.push(-1);
+    vector<int> ans(n);
+
+    for(int i =n-1;i>=0;i--){
+        int crr = arr[i];
+
+        while(s.top()>=crr){
+            s.pop();
+        }
+        //ans is stack ka top
+        ans[i] = s.top();
+        s.push(crr);
+    }
+    return ans;
+
+}
 int main(){
     
 //reverse string using stack
@@ -244,18 +264,28 @@ int main(){
     // print(st);
 
 // redundant brackets 
-    // string s=  "((a+b(a/b)))";
+    // string s =  "((a+b(a/b)))";
     // if(findRedundantBrackets(s)){
     //     cout<< "There are redundent brackets in the expression "<<endl;
     // }else{
     //     cout<<"There are no redundant brackets in the expression"<<endl;
     // }
 
-//
-string s = "}}{{{{{}}}";
-int value = findMinimumCost(s);
+// find minimum bracketsReversal
+    // string s = "}}{{{{{}}}";
+    // int value = findMinimumCost(s);
+    // cout<<"reversal brackets "<<value;
 
-cout<<"reversal brackets "<<value;
+// next smaller element using stack
+vector<int> arr = {2,1,4,3};
+int n = arr.size();
+vector<int> a = nextSmallElement(arr,n);
+for(int i=0;i<n;i++){
+    cout<<a[i]<<" ";
+}
+cout<<endl;
+
+
 
 return 0;
 }
