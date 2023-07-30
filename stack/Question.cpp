@@ -198,7 +198,7 @@ int findMinimumCost(string str) {
   int ans = (a+1)/2 + (b+1)/2;
   return ans;
 }
-//
+//function to get next smaller element using stack
 vector<int> nextSmallElement(vector<int> arr,int n){
     stack<int> s;
     s.push(-1);
@@ -215,8 +215,8 @@ vector<int> nextSmallElement(vector<int> arr,int n){
         s.push(crr);
     }
     return ans;
-
 }
+
 int main(){
     
 //reverse string using stack
@@ -277,14 +277,15 @@ int main(){
     // cout<<"reversal brackets "<<value;
 
 // next smaller element using stack
-vector<int> arr = {2,1,4,3};
-int n = arr.size();
-vector<int> a = nextSmallElement(arr,n);
-for(int i=0;i<n;i++){
-    cout<<a[i]<<" ";
-}
-cout<<endl;
+    vector<int> arr = {2,1,4,3};
+    int n = arr.size();
+    vector<int> a = nextSmallElement(arr,n);
+    for(int i=0;i<n;i++){
+        cout<<a[i]<<" ";
+    }
+    cout<<endl;
 
+//
 
 
 return 0;
