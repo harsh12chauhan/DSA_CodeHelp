@@ -13,29 +13,34 @@ class CircularQueue{
         qfront = rear = -1;
     }
     bool enqueue(int value){
+        //check if queue is full ?
         if((qfront == 0 && rear == size-1)||(rear == (qfront-1)%(size-1))){
             return false;
-        }else if(qfront == -1){
+        }else if(qfront == -1) // for first element
+        { 
             qfront = rear = 0;
-        }else if(rear == size-1){
+        }else if(rear == size-1) // to maintain cyclic nature
+        { 
             rear = 0;
-        }else{
+        }else{          //normal push
             rear++;
         }
         arr[rear] = value;
         return true;
     }
     int dequeue(){
-        if(qfront == -1){
+        if(qfront == -1){ // check if queue is empty ?
             return -1;
         }
         int ans = arr[qfront];
         arr[qfront] = -1;
-        if(qfront == rear){
+        if(qfront == rear) //if only single element is present in queue
+        {
             qfront = rear = -1;
-        }else if(qfront == size-1){
+        }else if(qfront == size-1)  // to maintain cyclic nature
+        { 
             qfront = 0;
-        }else{
+        }else{       //normal pop
             qfront++;
         }
         return ans;
