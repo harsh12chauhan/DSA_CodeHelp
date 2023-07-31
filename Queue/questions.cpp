@@ -78,14 +78,33 @@ vector<long long> printFirstNegativeInteger(long long int A[], long long int N, 
     }
     return ans;
 }
+//function for reverse first k elements from queue
+queue<int> reverseKElements(queue<int> q, int k) {
+    stack<int> s;
+    for(int i = 0;i<k;i++){
+        s.push(q.front());
+        q.pop();
+    }
+    while(!s.empty()){
+        q.push(s.top());
+        s.pop();
+    }
+    int remainingElements = q.size() - k;
+    for(int i =0;i<remainingElements;i++){
+        int val = q.front();
+        q.pop();
+        q.push(val);
+    }
+    return q;
+}
 int main(){
     queue<int> q;
-    // q.push(6);
-    // q.push(9);
-    // q.push(7);
-    // q.push(5);
-    // q.push(1);
-    // qPrint(q);
+    q.push(6);
+    q.push(9);
+    q.push(7);
+    q.push(5);
+    q.push(1);
+    qPrint(q);
 //reverse queue using stack
     // q = rev(q);    
     // qPrint(q);
@@ -95,14 +114,19 @@ int main(){
     // qPrint(q);
 
 // First negative integer in every window of size k
-long long int N = 5;
-long long int A[] = {-8, 2, 3, -6, 10};
-long long int K = 2;
-vector<long long> v = printFirstNegativeInteger(A,N,K);
-cout<<"negative integers are -> "<<endl;
-for(int i =0;i<v.size();i++){
-    cout<<v[i]<<" ";
-}cout<<endl;
+    // long long int N = 5;
+    // long long int A[] = {-8, 2, 3, -6, 10};
+    // long long int K = 2;
+    // vector<long long> v = printFirstNegativeInteger(A,N,K);
+    // cout<<"negative integers are -> "<<endl;
+    // for(int i =0;i<v.size();i++){
+    //     cout<<v[i]<<" ";
+    // }cout<<endl;
+
+//reverse first k elements from queue
+    int k = 3;
+    q = reverseKElements(q,k);
+    qPrint(q);
 
 return 0;
 }
