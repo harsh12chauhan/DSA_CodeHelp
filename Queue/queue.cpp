@@ -42,6 +42,10 @@ public:
         }
         return arr[qfront];
     }
+    ~Queue(){
+        delete arr;
+        cout<<"Memory is free"<<endl;
+    }
 };
 int main(){
     Queue obj;
