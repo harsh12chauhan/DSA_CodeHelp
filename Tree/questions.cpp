@@ -48,12 +48,52 @@ int height(node* root){
     int ans = max(left,right) + 1;
     return ans;
 }
+// longest diameter in the tree O(n^2) time ------------------------------
+int diameter(node* root) {        
+    if(root == NULL){
+        return 0;
+    }
+    
+    int op1 = diameter(root->left);
+    int op2 = diameter(root->right);
+    int op3 = height(root->left) + height(root->right) + 1;
+    
+    int ans = max(op1, max(op2,op3));
+    return ans;
+}
+
+// longest diameter in the tree  O(n) time ------------------------------
+pair<int,int> diameterFast(node*root){
+    if(root == NULL){
+        pair<int,int> p = make_pair(0,0);
+        return p;
+    }
+    
+    pair<int,int> left = diameterFast(root->left);
+    pair<int,int> right = diameterFast(root->right);
+    
+    int op1 = left.first;
+    int op2 = right.first;
+    int op3 = left.second + right.second + 1;
+    
+    pair<int,int> ans;
+    ans.first = max(op1,max(op2,op3));
+    ans.second = max(left.second,right.second)+1;
+    
+    return ans;
+}
 
 int main(){
     node*root = NULL;
     root = buildTree(root); // 1 3 7 -1 -1 11 -1 -1 5 17 -1 -1 -1
-    int h = height(root);
-    cout<<endl;
-    cout<<"maximum height is "<<h<<endl;
+//height of tree =======================================
+    // int h = height(root);
+    // cout<<endl;
+    // cout<<"maximum height is "<<h<<endl;
+
+// longest diameter in the tree ====================================
+    // int d = diameter(root); // O(n^2) time complexity
+    int d = diameterFast(root).first;  // O(n) time complexity
+    cout<<"longest Diameter is : "<<d<<endl;
 return 0;
 }
