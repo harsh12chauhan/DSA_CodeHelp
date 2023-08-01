@@ -130,6 +130,33 @@ pair<bool,int> isBalancedFast(node*root){
             return false;
         }
     }
+// Sum Tree -------------------------------------------------------
+pair<bool,int> isSumTreeFirst(node*root){
+    if(root == NULL){
+        pair<bool,int> p = make_pair(true,0);
+        return p;
+    }
+    if(root->left == NULL && root->right== NULL){
+        pair<bool,int> p = make_pair(true,root->data);
+        return p;
+    }
+    pair<bool,int> left = isSumTreeFirst(root->left);
+    pair<bool,int> right = isSumTreeFirst(root->right);
+    
+    bool leftAns = left.first;
+    bool rightAns = right.first;
+    
+    bool condn = root->data == left.second + right.second;
+        
+    pair<bool,int> ans;
+    if(leftAns && rightAns && condn){
+        ans.first =  true;
+        ans.second = 2*root->data;
+    }else{
+        ans.first = false;
+    }
+    return ans;
+}
 int main(){
     node*root = NULL;
     root = buildTree(root); // 1 3 7 -1 -1 11 -1 -1 5 17 -1 -1 -1
@@ -144,17 +171,24 @@ int main(){
     // cout<<"longest Diameter is : "<<d<<endl;
 
 // is balance or not===============================================
-    if(isBalancedFast(root).first){
-        cout<<"Balanced tree "<<endl;
-    }else{
-        cout<<"Not a Blanced tree"<<endl;
-    }
+    // if(isBalancedFast(root).first){
+    //     cout<<"Balanced tree "<<endl;
+    // }else{
+    //     cout<<"Not a Blanced tree"<<endl;
+    // }
 
-//Determine if Two Trees are Identical-------------------------------------
-    if(isIdentical(root,root)){
-        cout<<"yes Identical "<<endl;
+//Determine if Two Trees are Identical =============================
+    // if(isIdentical(root,root)){
+    //     cout<<"yes Identical "<<endl;
+    // }else{
+    //     cout<<"no Not Identical"<<endl;
+    // }
+
+//sum tree ============================================================
+    if(isSumTreeFirst(root).first){
+        cout<<" Yes sum tree "<<endl;
     }else{
-        cout<<"no Not Identical"<<endl;
+        cout<<"no Not a sum tree"<<endl;
     }
 return 0;
 }
