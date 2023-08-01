@@ -32,8 +32,12 @@ node*buildTree(node*root){
 
     return root;
 }
+
 // function for level order traversal of binary tree 
 void levelOrderTraversal(node*root){
+    if(root == NULL){
+        return;
+    }
     queue<node*>q;
     q.push(root);
     q.push(NULL);
@@ -58,6 +62,37 @@ void levelOrderTraversal(node*root){
         }
     }
 }
+
+// inorder traversal --------------------------------
+void inOrderTraversal(node*root){
+    if(root == NULL){
+        return;
+    }
+    inOrderTraversal(root->left);
+    cout<<root->data<<" ";
+    inOrderTraversal(root->right);
+}
+
+// preorder traversal --------------------------------
+void preOrderTraversal(node*root){
+    if(root == NULL){
+        return;
+    }
+    cout<<root->data<<" ";
+    preOrderTraversal(root->left);
+    preOrderTraversal(root->right);
+}
+
+// postorder traversal --------------------------------
+void postOrderTraversal(node*root){
+    if(root == NULL){
+        return;
+    }
+    postOrderTraversal(root->left);
+    postOrderTraversal(root->right);
+    cout<<root->data<<" ";
+}
+
 int main(){
 
     node*root = NULL;
@@ -66,6 +101,22 @@ int main(){
     root = buildTree(root); //1 3 7 -1 -1 11 -1 -1 5 17 -1 -1 -1
 
 // level order traversal of binary tree 
-    levelOrderTraversal(root);
+    // levelOrderTraversal(root);
+
+//inorder Traversal 
+    cout<<"Inorder traversal -> ";
+    inOrderTraversal(root);
+    cout<<endl;
+
+//preOrder Traversal 
+    cout<<"Preorder traversal -> ";
+    preOrderTraversal(root); 
+    cout<<endl;
+
+//postOrder Traversal
+    cout<<"Postorder traversal -> ";
+    postOrderTraversal(root);  
+    cout<<endl;  
+    
 return 0;
 }
