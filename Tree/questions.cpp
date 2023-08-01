@@ -106,6 +106,30 @@ pair<bool,int> isBalancedFast(node*root){
         }
         return ans;
     }
+// Determine if Two Trees are Identical-------------------------------------
+ bool isIdentical(node *r1, node *r2)
+    {
+        if(r1 == NULL && r2 == NULL){
+            return true;
+        }
+        if(r1 == NULL && r2 != NULL){
+            return false;
+        }
+        if(r1 != NULL && r2 == NULL){
+            return false;
+        }
+        
+        bool left = isIdentical(r1->left,r2->left);
+        bool right = isIdentical(r1->right,r2->right);
+        
+        bool value = r1->data == r2->data;
+        
+        if(left && right && value){
+            return true;
+        }else{
+            return false;
+        }
+    }
 int main(){
     node*root = NULL;
     root = buildTree(root); // 1 3 7 -1 -1 11 -1 -1 5 17 -1 -1 -1
@@ -124,6 +148,13 @@ int main(){
         cout<<"Balanced tree "<<endl;
     }else{
         cout<<"Not a Blanced tree"<<endl;
+    }
+
+//Determine if Two Trees are Identical-------------------------------------
+    if(isIdentical(root,root)){
+        cout<<"yes Identical "<<endl;
+    }else{
+        cout<<"no Not Identical"<<endl;
     }
 return 0;
 }
