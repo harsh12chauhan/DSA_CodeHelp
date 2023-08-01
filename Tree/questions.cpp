@@ -151,7 +151,8 @@ pair<bool,int> isSumTreeFirst(node*root){
     pair<bool,int> ans;
     if(leftAns && rightAns && condn){
         ans.first =  true;
-        ans.second = 2*root->data;
+        ans.second = root->data + left.second + right.second;
+        // ans.second = 2*root->data;                         //same works as above line 
     }else{
         ans.first = false;
     }
