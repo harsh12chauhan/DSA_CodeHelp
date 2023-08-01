@@ -14,13 +14,7 @@ class node{
         this->right = NULL;
     }
     ~node(){
-        if(left != NULL){
-            delete left;
-        }
-        if(right != NULL){
-            delete right;
-        }
-
+            delete left,right;
         cout<<"memory is free"<<endl;;
     }
 };
@@ -163,6 +157,7 @@ int main(){
 
 //creation of tree using level order ==================================
     buildLevelOrder(root);  //1 3 5 7 11 17 -1 -1 -1 -1 -1 -1 -1
+    cout<<endl;
     levelOrderTraversal(root);
 
 

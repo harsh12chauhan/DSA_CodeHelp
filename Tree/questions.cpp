@@ -82,18 +82,48 @@ pair<int,int> diameterFast(node*root){
     
     return ans;
 }
-
+// is balance or not ----------------------------------------------------
+pair<bool,int> isBalancedFast(node*root){
+        if(root == NULL){
+            pair<bool,int> p = make_pair(true,0);
+            return p;
+        }
+        
+        pair<bool,int> left = isBalancedFast(root->left);
+        pair<bool,int> right = isBalancedFast(root->right);
+        
+        bool leftAns = left.first;
+        bool rightAns = right.first;
+        
+        bool diff = abs(left.second - right.second) <= 1;
+        pair<bool,int> ans;
+        ans.second = max(left.second, right.second) + 1;
+        
+        if(leftAns && rightAns && diff){
+            ans.first = true;
+        }else{
+            ans.first = false;
+        }
+        return ans;
+    }
 int main(){
     node*root = NULL;
     root = buildTree(root); // 1 3 7 -1 -1 11 -1 -1 5 17 -1 -1 -1
-//height of tree =======================================
+//height of tree ==================================================
     // int h = height(root);
     // cout<<endl;
     // cout<<"maximum height is "<<h<<endl;
 
-// longest diameter in the tree ====================================
+// longest diameter in the tree ===================================
     // int d = diameter(root); // O(n^2) time complexity
-    int d = diameterFast(root).first;  // O(n) time complexity
-    cout<<"longest Diameter is : "<<d<<endl;
+    // int d = diameterFast(root).first;  // O(n) time complexity
+    // cout<<"longest Diameter is : "<<d<<endl;
+
+// is balance or not===============================================
+    if(isBalancedFast(root).first){
+        cout<<"Balanced tree "<<endl;
+    }else{
+        cout<<"Not a Blanced tree"<<endl;
+    }
 return 0;
 }
