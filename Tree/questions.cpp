@@ -129,7 +129,7 @@ pair<bool,int> isBalancedFast(node*root){
 }
 
 // Sum Tree -------------------------------------------------------
-pair<bool,int> isSumTreeFirst(node*root){
+pair<bool,int> isSumTreeFast(node*root){
     if(root == NULL){
         pair<bool,int> p = make_pair(true,0);
         return p;
@@ -138,8 +138,8 @@ pair<bool,int> isSumTreeFirst(node*root){
         pair<bool,int> p = make_pair(true,root->data);
         return p;
     }
-    pair<bool,int> left = isSumTreeFirst(root->left);
-    pair<bool,int> right = isSumTreeFirst(root->right);
+    pair<bool,int> left = isSumTreeFast(root->left);
+    pair<bool,int> right = isSumTreeFast(root->right);
     
     bool leftAns = left.first;
     bool rightAns = right.first;
@@ -184,7 +184,7 @@ int main(){
     // }
 
 //sum tree ============================================================
-    if(isSumTreeFirst(root).first){
+    if(isSumTreeFast(root).first){
         cout<<" Yes sum tree "<<endl;
     }else{
         cout<<"no Not a sum tree"<<endl;
