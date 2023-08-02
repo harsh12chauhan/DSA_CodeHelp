@@ -92,7 +92,7 @@ vector<int> verticalTraversal(node *root)
 int main(){
     
     node*root = NULL;
-    buildLevelOrder(root);
+    buildLevelOrder(root); //1 3 5 7 11 17 -1 -1 -1 -1 -1 -1 -1
 
 // vertial traversal in tree===================================
     vector<int> v = verticalTraversal(root);
