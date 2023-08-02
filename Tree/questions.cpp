@@ -48,6 +48,7 @@ int height(node* root){
     int ans = max(left,right) + 1;
     return ans;
 }
+
 // longest diameter in the tree O(n^2) time ------------------------------
 int diameter(node* root) {        
     if(root == NULL){
@@ -84,52 +85,49 @@ pair<int,int> diameterFast(node*root){
 }
 // is balance or not ----------------------------------------------------
 pair<bool,int> isBalancedFast(node*root){
-        if(root == NULL){
-            pair<bool,int> p = make_pair(true,0);
-            return p;
-        }
-        
-        pair<bool,int> left = isBalancedFast(root->left);
-        pair<bool,int> right = isBalancedFast(root->right);
-        
-        bool leftAns = left.first;
-        bool rightAns = right.first;
-        
-        bool diff = abs(left.second - right.second) <= 1;
-        pair<bool,int> ans;
-        ans.second = max(left.second, right.second) + 1;
-        
-        if(leftAns && rightAns && diff){
-            ans.first = true;
-        }else{
-            ans.first = false;
-        }
-        return ans;
+    if(root == NULL){
+        pair<bool,int> p = make_pair(true,0);
+        return p;
     }
+    pair<bool,int> left = isBalancedFast(root->left);
+    pair<bool,int> right = isBalancedFast(root->right);
+    
+    bool leftAns = left.first;
+    bool rightAns = right.first;
+    
+    bool diff = abs(left.second - right.second) <= 1;
+    pair<bool,int> ans;
+    ans.second = max(left.second, right.second) + 1;
+    
+    if(leftAns && rightAns && diff){
+        ans.first = true;
+    }else{
+        ans.first = false;
+    }
+    return ans;
+}
 // Determine if Two Trees are Identical-------------------------------------
  bool isIdentical(node *r1, node *r2)
-    {
-        if(r1 == NULL && r2 == NULL){
-            return true;
-        }
-        if(r1 == NULL && r2 != NULL){
-            return false;
-        }
-        if(r1 != NULL && r2 == NULL){
-            return false;
-        }
-        
-        bool left = isIdentical(r1->left,r2->left);
-        bool right = isIdentical(r1->right,r2->right);
-        
-        bool value = r1->data == r2->data;
-        
-        if(left && right && value){
-            return true;
-        }else{
-            return false;
-        }
+{
+    if(r1 == NULL && r2 == NULL){
+        return true;
     }
+    if(r1 == NULL && r2 != NULL){
+        return false;
+    }
+    if(r1 != NULL && r2 == NULL){
+        return false;
+    }
+    bool left = isIdentical(r1->left,r2->left);
+    bool right = isIdentical(r1->right,r2->right);
+    bool value = r1->data == r2->data;
+    if(left && right && value){
+        return true;
+    }else{
+        return false;
+    }
+}
+
 // Sum Tree -------------------------------------------------------
 pair<bool,int> isSumTreeFirst(node*root){
     if(root == NULL){
