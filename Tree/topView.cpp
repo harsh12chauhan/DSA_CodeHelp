@@ -70,9 +70,10 @@ void buildLevelOrder(node* &root){
             node*frontNode = temp.first;
             int hd = temp.second;
             
-            if(m.find(hd) == m.end()){
+            if(m.find(hd) == m.end()){        // for top view include condition
                 m[hd] = frontNode->data;
             }
+            // m[hd] = frontNode->data;      // for bottom view remove condition
             
             if(frontNode->left){
                 q.push(make_pair(frontNode->left,hd-1));
