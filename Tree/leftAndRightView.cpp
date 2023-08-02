@@ -61,8 +61,8 @@ void leftView(node*root,vector<int> &ans,int level){
     
     leftView(root->left,ans,level+1);
     leftView(root->right,ans,level+1);
-    
 }
+
 //function for right view of the tree-------------------------------------
 void rightView(node*root,vector<int> &ans,int level){
     //base case
@@ -74,9 +74,8 @@ void rightView(node*root,vector<int> &ans,int level){
         ans.push_back(root->data);
     }
     
-    leftView(root->right,ans,level+1);
-    leftView(root->left,ans,level+1);
-    
+    rightView(root->right,ans,level+1);
+    rightView(root->left,ans,level+1);
 }
 int main(){
     
