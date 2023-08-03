@@ -46,7 +46,23 @@ void levelOrderTraversal(node*root){
         }
     }
 }
+// search in a BST -------------------------------------
+bool searchInBST(node *root, int x) {
+    // Write your code here.
+    if(root == NULL){
+        return false;
+    }
+    
+    if(x == root->data){
+        return true;
+    }
 
+    if(x > root->data){
+        return searchInBST(root->right, x);
+    }else{
+        return searchInBST(root->left, x);
+    }
+}
 //function to insert the data into binary search tree ( BST ) ------------------------
 node* insertIntoBST(node*root,int data){
     if( root == NULL){
@@ -74,10 +90,20 @@ void takeInput(node* &root){
 int main(){
     node*root = NULL;
 
+// insertion in BST ==========================================
     cout<<"Enter the data to insert in BST : "<<endl;
     takeInput(root);
 
-    levelOrderTraversal(root);
+// traversal of BST using level order traversal =============
+    // levelOrderTraversal(root);
+
+// search an element in the BST =============================
+    int x = 5;
+    if(searchInBST(root,x)){
+        cout<<"Element found !"<<endl;
+    }else{
+        cout<<"Element not found."<<endl;
+    }
 
     return 0;
 }
