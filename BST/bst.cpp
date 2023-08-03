@@ -106,6 +106,22 @@ void takeInput(node* &root){
         cin>>data;
     }
 }
+// function to get the node with minimum value in the BST ---------------------
+node* minValueInBST(node*root){
+    node*temp = root;
+    while(temp ->left != NULL){
+        temp = temp->left;
+    }
+    return temp;
+}
+// function to get the node with maximum value in the BST ---------------------
+node* maxValueInBST(node*root){
+    node*temp = root;
+    while(temp ->right != NULL){
+        temp = temp->right;
+    }
+    return temp;
+}
 int main(){
     node*root = NULL;
 
@@ -117,13 +133,17 @@ int main(){
     // levelOrderTraversal(root);
 
 // search an element in the BST =============================
-    int x = 5;
-    // if(searchInBST(root,x)){             // recursive approach
-    if(searchInBSTiterative(root,x)){       // itrative approach
-        cout<<"Element found !"<<endl;
-    }else{
-        cout<<"Element not found."<<endl;
-    }
+    // int x = 5;
+    // // if(searchInBST(root,x)){             // recursive approach
+    // if(searchInBSTiterative(root,x)){       // itrative approach
+    //     cout<<"Element found !"<<endl;
+    // }else{
+    //     cout<<"Element not found."<<endl;
+    // }
 
+// min and max value in the BST==================================
+
+    cout<<" Minimun value in the BST is -> "<<minValueInBST(root)->data<<endl;;
+    cout<<" Maxiimun value in the BST is -> "<<maxValueInBST(root)->data<<endl;;
     return 0;
 }
