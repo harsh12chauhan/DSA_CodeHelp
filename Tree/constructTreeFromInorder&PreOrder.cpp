@@ -26,7 +26,6 @@ void postOrderTraversal(node*root){
     postOrderTraversal(root->right);
     cout<<root->data<<" ";
 }
-
 // Construct Tree from Inorder & Preorder -------------------------------------------------
 int findPostion(int in[],int start,int end,int element,int n){
     for(int i = start;i<=end;i++){
@@ -54,7 +53,7 @@ node* solve(int in[],int pre[],int &index ,int start,int end,int n){
     return root;
 }
 
-// optimized apporach-------------------
+// optimized apporach for Construct Tree from Inorder & Preorder -----------------------------
 // node* solve(int in[],int pre[],int &index ,int start,int end,int n,map<int,int> &nodeToIndex){
 //    // base case
 //     if((index >= n) || (start > end)){
