@@ -49,8 +49,8 @@ void buildLevelOrder(node* &root){
         }
     }
 }
-// Sum of the Longest Bloodline of a Tree------------------------------------------
-void sumOfLongestBloodLine(node*root,int sum,int &maxSum , int len ,int &maxLen){
+// Sum of the Longest Bloodline of a Tree ------------------------------------------
+void sumOfLongRootToLeafPath(node*root,int sum,int &maxSum , int len ,int &maxLen){
     //base case
     if(root == NULL){
         if(len > maxLen){
@@ -63,8 +63,8 @@ void sumOfLongestBloodLine(node*root,int sum,int &maxSum , int len ,int &maxLen)
     }
 
     sum = sum + root->data;
-    sumOfLongestBloodLine(root->left,sum,maxSum,len + 1,maxLen);
-    sumOfLongestBloodLine(root->right,sum,maxSum,len + 1,maxLen);
+    sumOfLongRootToLeafPath(root->left,sum,maxSum,len + 1,maxLen);
+    sumOfLongRootToLeafPath(root->right,sum,maxSum,len + 1,maxLen);
 }
 
 int main(){
@@ -78,7 +78,7 @@ int main(){
     int maxSum = 0;
     int len = 0;
     int maxLen = 0;
-    sumOfLongestBloodLine(root,sum,maxSum,len,maxLen);
+    sumOfLongRootToLeafPath(root,sum,maxSum,len,maxLen);
     cout<<endl<<"sum of longest bloodline is  -> "<<maxSum<<endl;
 return 0;
 }
