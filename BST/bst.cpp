@@ -46,7 +46,8 @@ void levelOrderTraversal(node*root){
         }
     }
 }
-// search in a BST -------------------------------------
+
+// search in a BST  (recursive solution) time = O(n) space = O(n)
 bool searchInBST(node *root, int x) {
     // Write your code here.
     if(root == NULL){
@@ -63,6 +64,23 @@ bool searchInBST(node *root, int x) {
         return searchInBST(root->left, x);
     }
 }
+
+// search in a BST  (iterative solution) time = O(n) space = O(1)
+bool searchInBSTiterative(node *root, int x) {
+    node* temp = root;
+    while(temp != NULL){
+        if(temp->data == x){
+            return true;
+        }
+        if(temp->data < x){
+            temp = temp->right;
+        }else{
+            temp = temp->left;
+        }
+    }
+    return false;
+}
+
 //function to insert the data into binary search tree ( BST ) ------------------------
 node* insertIntoBST(node*root,int data){
     if( root == NULL){
@@ -78,6 +96,7 @@ node* insertIntoBST(node*root,int data){
 
     return root;
 }
+
 //taking input and calling the BST function --------------------
 void takeInput(node* &root){
     int data;
@@ -99,7 +118,8 @@ int main(){
 
 // search an element in the BST =============================
     int x = 5;
-    if(searchInBST(root,x)){
+    // if(searchInBST(root,x)){             // recursive approach
+    if(searchInBSTiterative(root,x)){       // itrative approach
         cout<<"Element found !"<<endl;
     }else{
         cout<<"Element not found."<<endl;
