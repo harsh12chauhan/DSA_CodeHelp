@@ -57,7 +57,7 @@ void preOrderTraversal(node*root){
 // optimized apporach for Construct Tree from Inorder & Preorder -----------------------------
 node* solve(int in[],int post[],int &index ,int start,int end,int n,map<int,int> &nodeToIndex){
    // base case
-    if((index >= n) || (start > end)){
+    if((index < 0) || (start > end)){
         return NULL;
     }
     
