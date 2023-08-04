@@ -93,7 +93,7 @@ pair<int,int> PredSuccBST(node*root,int key){
 
 int main(){ 
     node*root = NULL;
-
+// ERROR AA RA THA ISME KUCH CODING NINJAS PLATFORM PE JAB KIYA THA YE QUESTION 
 // insertion in BST ==========================================
     cout<<"Enter the data to insert in BST : "<<endl;
     takeInput(root);
