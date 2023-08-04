@@ -11,12 +11,40 @@ class node{
         this->left =NULL;
         this->right = NULL;
     }
-    ~node(){
-        delete left,right;
-        cout<< "memory is free"<<endl;
-    }
+    // ~node(){
+    //     delete left,right;
+    //     cout<< "memory is free"<<endl;
+    // }
 };
+// inorder traversal --------------------------------------------------------------
+void inOrderTraversal(node*root){
+    if(root == NULL){
+        return;
+    }
+    inOrderTraversal(root->left);
+    cout<<root->data<<" ";
+    inOrderTraversal(root->right);
+}
 
+// preorder traversal -------------------------------------------------------------
+void preOrderTraversal(node*root){
+    if(root == NULL){
+        return;
+    }
+    cout<<root->data<<" ";
+    preOrderTraversal(root->left);
+    preOrderTraversal(root->right);
+}
+
+// postorder traversal ------------------------------------------------------------
+void postOrderTraversal(node*root){
+    if(root == NULL){
+        return;
+    }
+    postOrderTraversal(root->left);
+    postOrderTraversal(root->right);
+    cout<<root->data<<" ";
+}
 // function for level order traversal of binary tree ---------------------------------
 void levelOrderTraversal(node*root){
     if(root == NULL){
@@ -46,8 +74,24 @@ void levelOrderTraversal(node*root){
         }
     }
 }
+// different types of traversal -------------------------------------------------
+void diffTraversal(node*root){
+    cout<<"level order traversal -> "<<endl;
+    levelOrderTraversal(root);
+    cout<<endl;
+    cout<<"inorder traversal -> "<<endl;
+    inOrderTraversal(root);
+    cout<<endl;
+    cout<<"preorder traversal -> "<<endl;
+    preOrderTraversal(root);
+    cout<<endl;
+    cout<<"postorder traversal -> "<<endl;
+    postOrderTraversal(root);
+    cout<<endl;
+    cout<<" traversal completed ======================="<<endl;
+}
 
-// search in a BST  (recursive solution) time = O(n) space = O(n)
+// search in a BST  (recursive solution) time = O(n) space = O(n)------------------------------
 bool searchInBST(node *root, int x) {
     // Write your code here.
     if(root == NULL){
@@ -65,7 +109,7 @@ bool searchInBST(node *root, int x) {
     }
 }
 
-// search in a BST  (iterative solution) time = O(n) space = O(1)
+// search in a BST  (iterative solution) time = O(n) space = O(1)-----------------------------------
 bool searchInBSTiterative(node *root, int x) {
     node* temp = root;
     while(temp != NULL){
@@ -122,6 +166,45 @@ node* maxValueInBST(node*root){
     }
     return temp;
 }
+// function to delete a target node ----------------------------------------------
+node* deleteNodeInBST(node* root,int target){
+    //base case
+    if(root == NULL){
+        return root ;
+    }
+    if(root->data == target){
+        // 0 child
+        if(root->left == NULL && root->right == NULL){
+            delete root;
+            return NULL;
+        }
+        // 1 child
+            //left child
+            if(root->left != NULL && root->right == NULL){
+                node*temp = root->left;
+                delete root;
+                return temp;
+            }
+            //right child
+            if(root->left == NULL && root->right != NULL){
+                node*temp = root->right;
+                delete root;
+                return temp;
+            }
+        // 2 child
+        if(root->left != NULL && root->right != NULL){
+            int mini = minValueInBST(root->right)->data;
+            root->data = mini;
+            root->right = deleteNodeInBST(root->right,mini);
+            return root;
+        }
+    }else if( root->data < target){
+        root->right =  deleteNodeInBST(root->right,target);
+    }else{
+        root->left = deleteNodeInBST(root->left,target);
+    }
+}
+
 int main(){
     node*root = NULL;
 
@@ -129,10 +212,10 @@ int main(){
     cout<<"Enter the data to insert in BST : "<<endl;
     takeInput(root);
 
-// traversal of BST using level order traversal =============
+// traversal of BST using level order traversal ===================
     // levelOrderTraversal(root);
 
-// search an element in the BST =============================
+// search an element in the BST ====================================
     // int x = 5;
     // // if(searchInBST(root,x)){             // recursive approach
     // if(searchInBSTiterative(root,x)){       // itrative approach
@@ -141,9 +224,24 @@ int main(){
     //     cout<<"Element not found."<<endl;
     // }
 
-// min and max value in the BST==================================
+// min and max value in the BST =======================================
 
-    cout<<" Minimun value in the BST is -> "<<minValueInBST(root)->data<<endl;;
-    cout<<" Maxiimun value in the BST is -> "<<maxValueInBST(root)->data<<endl;;
+    // cout<<" Minimun value in the BST is -> "<<minValueInBST(root)->data<<endl;
+    // cout<<" Maxiimun value in the BST is -> "<<maxValueInBST(root)->data<<endl;
+
+// traversals ==============================================================
+    cout<<"before deletion ------------"<<endl;
+    diffTraversal(root);
+
+//delete a element in BST ==============================================
+    //50 20 70 10 30 90 110 -1
+    root = deleteNodeInBST(root,50);
+
+// traversals ==============================================================
+    cout<<"after deletion ------------"<<endl;
+    diffTraversal(root);
+
+
+
     return 0;
 }
