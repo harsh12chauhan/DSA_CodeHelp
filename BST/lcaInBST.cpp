@@ -61,7 +61,7 @@ node*LCAinaBSTRecursive(node*root, int P, int Q)
     return root;
        
 }
-// ( itrative approach )funciton to find the LCA lowest common ancestor of 2 nodes ------------------
+// ( iterative approach )funciton to find the LCA lowest common ancestor of 2 nodes ------------------
 node*LCAinaBST(node*root, int P, int Q)
 {
     while(root != NULL){
