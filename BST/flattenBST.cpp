@@ -46,7 +46,7 @@ void takeInput(node* &root){
         root = insertIntoBST(root,data[i]);
     }
 }
-
+//===========================================================================================================================
 // using inorder traversal  to store int in sorted way in vector ------------------------
 void inordorTraversal(node*root,vector<int> &inorderNodes){
 
@@ -78,7 +78,7 @@ node* flatten(node* root)
     }
     return newRoot;
 }
-/*
+/*=================================================================================================================
 // using inorder traversal  to store node in sorted way in vector ------------------------
 void inordorTraversal(node*root,vector<node*> &inorderNodes){
 
@@ -107,6 +107,7 @@ node* flatten(node* root)
     inorderNodes[n-1]->left = NULL;
     return inorderNodes[0];
 }
+=================================================================================================================
 */
 
 int main(){
