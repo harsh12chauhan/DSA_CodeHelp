@@ -79,6 +79,7 @@ node* maxValueInBST(node*root){
     }
     return temp;
 }
+//function to get predecessor and successor of the target node ------------------------
 pair<int,int> PredSuccBST(node*root,int key){
     //find the key node
     node*keyNode = searchInBSTiterative(root,key);
