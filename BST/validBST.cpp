@@ -11,10 +11,14 @@ class node{
         this->left =NULL;
         this->right = NULL;
     }
-    // ~node(){
-    //     delete left,right;
-    //     cout<< "memory is free"<<endl;
-    // }
+   ~node() {
+            if(left)
+                delete left;
+            if(right)
+                delete right;
+            
+        cout<<" memory is free"<<endl;                
+        }
 };
 //function to insert the data into binary search tree ( BST ) ------------------------
 node* insertIntoBST(node*root,int data){
