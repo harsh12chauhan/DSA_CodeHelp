@@ -11,10 +11,14 @@ class node{
         this->left =NULL;
         this->right = NULL;
     }
-    // ~node(){
-    //     delete left,right;
-    //     cout<< "memory is free"<<endl;
-    // }
+    ~node(){
+            if(left)
+                delete left;
+            if(right)
+                delete right;
+            
+            cout<<" memory is free"<<endl;
+    }
 };
 // inorder traversal --------------------------------------------------------------
 void inOrderTraversal(node*root){
