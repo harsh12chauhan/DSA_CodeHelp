@@ -23,7 +23,7 @@ class heap{
         cout<<endl;
     }
 
-    //insertion in heap ----------------------------------
+    //insertion in max heap ----------------------------------
     void insert(int data){
         //step1: increment the size
         size = size + 1;
@@ -46,7 +46,7 @@ class heap{
         }
     }
     
-    // deletion in heap ----------------------------------
+    // deletion in max heap ----------------------------------
     void deletion(){
         //step1:put last element into first element
         arr[1] = arr[size];
@@ -72,24 +72,63 @@ class heap{
             }
         }
     }
-
 };
+
+//heapify function -------------------------------------------
+void heapify(int arr[],int n, int i){
+    int largest = i;
+    int leftIndex = 2*i;
+    int rightIndex = 2*i+1;
+
+    if(leftIndex < n && arr[largest] < arr[leftIndex]){
+        largest = leftIndex;
+    }
+    if(rightIndex < n && arr[largest] < arr[rightIndex]){
+        largest =  rightIndex;
+    }
+
+    if(largest != i){
+        swap(arr[largest],arr[i]);
+        heapify(arr,n,largest);
+    }
+}
+
 int main(){
     heap h;
 
-//insertion in heap =========================================
-    h.insert(23);
-    h.insert(53);
-    h.insert(86);
-    h.insert(9);
-    h.insert(43);
-    h.insert(221);
-    h.insert(91);
-    h.print();
+//insertion in max heap =========================================
+    // h.insert(23);
+    // h.insert(53);
+    // h.insert(86);
+    // h.insert(9);
+    // h.insert(43);
+    // h.insert(221);
+    // h.insert(91);
+    // h.print();
 
-//deletion in heap ===========================================
-    h.deletion();
-    h.print();
+//deletion in max heap ===========================================
+    // h.deletion();
+    // h.print();
+
+// heapify ======================================================
+    int arr1[6] = {-1,54,53,52,55,56};
+    int n = 5;
+    
+    //printing the array=====
+    for (int i = 1; i <=n; i++){
+        cout<<arr1[i]<<" ";
+    }cout<<endl;
+
+
+    for (int i =n/2 ; i >0; i--)
+    {
+        heapify(arr1,n,i);
+    }
+    
+    //printing the array=====
+    for (int i = 1; i <=n; i++){
+        cout<<arr1[i]<<" ";
+    }cout<<endl;
 
 return 0;
 }
