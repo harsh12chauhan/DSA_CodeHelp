@@ -80,10 +80,10 @@ void heapify(int arr[],int n, int i){
     int leftIndex = 2*i;
     int rightIndex = 2*i+1;
 
-    if(leftIndex < n && arr[largest] < arr[leftIndex]){
+    if(leftIndex <= n && arr[largest] < arr[leftIndex]){
         largest = leftIndex;
     }
-    if(rightIndex < n && arr[largest] < arr[rightIndex]){
+    if(rightIndex <= n && arr[largest] < arr[rightIndex]){
         largest =  rightIndex;
     }
 
@@ -93,9 +93,21 @@ void heapify(int arr[],int n, int i){
     }
 }
 
-int main(){
-    heap h;
+//heap sort ---------------------------------------------------------------------------
+void heapSort(int arr[],int n){
+    int size = n;
+    while(size>1){
+        swap(arr[size],arr[1]);
+        size--;
 
+        heapify(arr,size,1);
+    }
+}
+
+int main(){
+
+// 1-BASED INDEXING ------------------------------------------------------------------------
+    heap h;
 //insertion in max heap =========================================
     // h.insert(23);
     // h.insert(53);
@@ -113,18 +125,23 @@ int main(){
 // heapify ======================================================
     int arr1[6] = {-1,54,53,52,55,56};
     int n = 5;
-    
+
     //printing the array=====
     for (int i = 1; i <=n; i++){
         cout<<arr1[i]<<" ";
     }cout<<endl;
 
-
+    //converting in to heap=====
     for (int i =n/2 ; i >0; i--)
     {
         heapify(arr1,n,i);
     }
-    
+
+    // in above we are converting our array into heap
+//heap sort =======================================================
+
+    heapSort(arr1,n);
+
     //printing the array=====
     for (int i = 1; i <=n; i++){
         cout<<arr1[i]<<" ";
