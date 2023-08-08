@@ -49,7 +49,30 @@ class Trie{
     void insertWord(string word){
         insertUtil(root,word);
     }
+//=========================================================================================================
 
+    //code for removing word---------
+    void removeUtils(TrieNode*root,string word){
+        //base case
+        if(word.length() == 0){
+            root->isTerminal =false;
+            return ;
+        }
+
+        int index = word[0] - 'A';
+        TrieNode*child;
+
+        if(root->children[index] != NULL){
+            child = root->children[index];
+        }else{
+            return;
+        }
+        removeUtils(child,word.substr(1));
+    }
+
+    void  removeWord(string word){
+        removeUtils(root,word);
+    }
 //====================================================================================
 
     //code for searching word is present or not------
@@ -78,20 +101,33 @@ class Trie{
     }
 
 //====================================================================================
-
     }
 };
 int main(){
     Trie *t = new Trie();
-
+//insertion =====================================
     t->insertWord("ABCDE");
+    t->insertWord("TRIE");
+    t->insertWord("HELLO");
 
-    if (t->searchWord("ABCDE"))
+//searching =======================================
+    if (t->searchWord("HELLO"))
     {
         cout<<"is present "<<endl;
     }else{
         cout<<"is not present "<<endl;
     }
+//deletion =======================================
+    t->removeWord("HELLO");
+    
+    cout<<"After Deletion"<<endl;
 
+//searching =======================================   
+    if (t->searchWord("HELLO"))
+    {
+        cout<<"is Present "<<endl;
+    }else{
+        cout<<"is Not Present "<<endl;
+    }
 return 0;
 }
