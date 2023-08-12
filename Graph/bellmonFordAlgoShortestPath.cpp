@@ -41,7 +41,7 @@ int bellmonFord(int n, int m, int src, int dest, vector<vector<int>> &edges) {
         return -1;
     }
 }
-
+//bellmonford algorithm for finding shortest path with negative weights but not when -ve cycle is present ============
 int main(){
 vector<vector<int>> edges{{1, 2, 2},
                           {1, 3, 2},
